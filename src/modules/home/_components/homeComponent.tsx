@@ -1,80 +1,72 @@
 import React from 'react';
+import weatherIcon from '../../../assets/img/weather.png';
+
 
 import {
     Container,
     Row,
     Col,
     Card,
+    CardGroup,
     Navbar,
     Nav,
     Form,
     FormControl,
-    Button
+    Button,
+    Image,
+    InputGroup
 } from 'react-bootstrap';
 
+interface IState {
+    backgroud: any;
+  }
 
-class HomeComponent extends React.Component {
-
+class HomeComponent extends React.Component<{}, IState> {
+    private myRef: React.RefObject<HTMLInputElement>;
+    state: IState;
     constructor(props: any) {
         super(props);
+        this.myRef = React.createRef();
+        this.state = {
+            backgroud: {}
+        }
+    }
+
+    watherStage() {
+
     }
 
     render() {
         return (
-            <>
-                <Navbar bg="light" expand="lg">
-                    <Navbar.Brand href="">Weather App</Navbar.Brand>
+            <div className="-toggle-dark" ref={this.myRef}>
+                <Navbar expand="lg">
+                    <Navbar.Brand href=""><Image src={weatherIcon} width="50" height="50" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto"></Nav>
                         <Form inline>
-                            <FormControl type="text" placeholder="Search City" className="mr-sm-2" />
-                            <Button variant="outline-success">Search</Button>
+                            <Form.Check
+                                type="switch"
+                                id="custom-switch"
+                                label=""
+                                onClick={() => { this.setState({}) }}
+                            />
                         </Form>
                     </Navbar.Collapse>
                 </Navbar>
-                <Container className="mt-4">
-                    <Card>
-                        <Card.Header>City</Card.Header>
-                        <Card.Body>
-                            <Row>
-                                <Col>
-                                    <Card.Text>
-                                        <Col>Rancho Park, CA 90064</Col>
-                                        <Col>Thursday 10:00 PM</Col>
-                                        <Col>Clear with periodic clouds</Col>
-                                    </Card.Text>
-                                </Col>
-                            </Row>
-                            <Card.Title>
-                                <Row>
-                                    <Col>
-                                        <Card.Text>
-                                            <Col><h1>75</h1></Col>
-                                        </Card.Text>
-                                    </Col>
-                                </Row>
-                            </Card.Title>
-                            <Row>
-                                <Col>
-                                    <Card.Text>
-                                        Rancho Park, CA 90064
-                                        Thursday 10:00 PM
-                                        Clear with periodic clouds
-                                    </Card.Text>
-                                </Col>
-                                <Col>
-                                    <Card.Text>
-                                        Rancho Park, CA 90064
-                                        Thursday 10:00 PM
-                                        Clear with periodic clouds
-                                    </Card.Text>
-                                </Col>
-                            </Row>
-                        </Card.Body>
-                    </Card>
+                <Container className="mt-4 text-center">
+                    <InputGroup className="mb-3">
+                        <FormControl
+                            placeholder="Type city name to find weather"
+                            aria-label="Recipient's username"
+                            aria-describedby="basic-addon2"
+                        />
+                        <InputGroup.Append>
+                            <Button variant="outline-secondary">Search</Button>
+                        </InputGroup.Append>
+                    </InputGroup>
                 </Container>
-            </>
+            </div>
         );
     }
 }
