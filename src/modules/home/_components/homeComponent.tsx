@@ -1,6 +1,7 @@
 import React from 'react';
 import weatherIcon from '../../../assets/img/weather.png';
-
+import '../../../style.scss';
+import { getWatherByName } from '../../../services/weatherApi';
 
 import {
     Container,
@@ -19,26 +20,44 @@ import {
 
 interface IState {
     backgroud: any;
-  }
+    cityTosearch: any;
+}
 
 class HomeComponent extends React.Component<{}, IState> {
-    private myRef: React.RefObject<HTMLInputElement>;
+    private textInput: React.RefObject<HTMLInputElement>;
     state: IState;
     constructor(props: any) {
         super(props);
-        this.myRef = React.createRef();
+        this.textInput = React.createRef();
         this.state = {
-            backgroud: {}
+            backgroud: '-toggle-light',
+            cityTosearch: null
         }
+
+        this.watherStage = this.watherStage.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputCityForSearch = this.handleInputCityForSearch.bind(this);
     }
 
     watherStage() {
+        this.setState({
+            backgroud: this.state.backgroud === '-toggle-dark' ? '-toggle-light' : '-toggle-dark'
+        })
+    }
 
+    handleInputChange(event: any) {
+        this.setState({ cityTosearch: event.target.value });
+    }
+
+    handleInputCityForSearch() {
+        console.log('search for:', this.state.cityTosearch);
+        let response = getWatherByName(this.state.cityTosearch);
+        console.log('check res:', response)
     }
 
     render() {
         return (
-            <div className="-toggle-dark" ref={this.myRef}>
+            <div className={this.state.backgroud}>
                 <Navbar expand="lg">
                     <Navbar.Brand href=""><Image src={weatherIcon} width="50" height="50" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -49,7 +68,7 @@ class HomeComponent extends React.Component<{}, IState> {
                                 type="switch"
                                 id="custom-switch"
                                 label=""
-                                onClick={() => { this.setState({}) }}
+                                onClick={() => this.watherStage()}
                             />
                         </Form>
                     </Navbar.Collapse>
@@ -60,9 +79,10 @@ class HomeComponent extends React.Component<{}, IState> {
                             placeholder="Type city name to find weather"
                             aria-label="Recipient's username"
                             aria-describedby="basic-addon2"
+                            onChange={this.handleInputChange}
                         />
                         <InputGroup.Append>
-                            <Button variant="outline-secondary">Search</Button>
+                            <Button variant="outline-secondary" onClick={() => this.handleInputCityForSearch()}>Search</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Container>

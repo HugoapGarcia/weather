@@ -3,8 +3,8 @@ const apiVersion = 'weather?q=';
 
 const hostname = window && window.location && window.location.hostname;
 
-if(hostname === 'http://localhost') {
-  backendHost = 'https://api.openweathermap.org/data/2.5/';
+if(hostname === 'localhost') {
+  backendHost = 'https://community-open-weather-map.p.rapidapi.com/';
 } 
 
 export const SETTINGS =  { 
