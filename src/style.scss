@@ -1,10 +1,44 @@
 .-toggle-dark{
     background: black;
     width: 100%;
-    height: auto;
+    height: 100vh;
 }
 .-toggle-light{
     background: white;
     width: 100%;
-    height: auto;
+    height: 100vh;
+}
+.-weather-icon {
+    float: left;
+}
+.-temp-text {
+    font-size: 5vw;
+    float: left;
+}
+.-details-text {
+    float: left;
+    font-size: 3vw;
+}
+.-celsius-f {
+    font-size: 2rem;
+    cursor: pointer;
+    &:hover, 
+    &:focus,
+    &:active {
+    color: red;
+  }
+}
+button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+button:focus {
+    border: none!important;
+    outline:none;
+}
+.-description {
+    float: left;
+    font-size: 2vw;
+    text-transform: uppercase;
 }
