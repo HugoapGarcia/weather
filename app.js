@@ -4,7 +4,7 @@ const path =  require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 
-
+const _port = 8080;
 const app = express();
 
 // Parse POST or GET data
@@ -31,7 +31,7 @@ app.get('*', (req, res, next) =>{
 /*****************************************************
  * Get port form eviroment and add store in Express. *
  *****************************************************/
-const port = process.env.PORT || '4000';
+const port = process.env.PORT || _port;
 app.set('port', port);
 
 /*

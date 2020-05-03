@@ -59,21 +59,35 @@ class HomeComponent extends React.Component<{}, IState> {
         this.handleInputCityForSearch = this.handleInputCityForSearch.bind(this);
     }
 
+    /**
+     * @function watherStage()
+     * @description State listener to change backgroud color.
+     */
     watherStage() {
         this.setState({
             backgroud: this.state.backgroud === '-toggle-dark' ? '-toggle-light' : '-toggle-dark'
         })
     }
 
+    /**
+     * @function handleInputChange()
+     * @param event 
+     * @description Onchange listener on charge of get input value to be submited.
+     */
     handleInputChange(event: any) {
         this.setState({ cityTosearch: event.target.value });
     }
 
+    /**
+     * @function handleInputCityForSearch()
+     * @param units 
+     * @description Asyncronise lisneter on charge of submit request to service end-point 
+     * openWeather api, retreived and populat state base on response back.
+     */
     async handleInputCityForSearch(units: any) {
 
         await getWeatherByCityName(this.state.cityTosearch, units)
             .then((response) => {
-                console.log('success:', response);
                 this.setState({
                     name: response.data.name,
                     icon: `http://openweathermap.org/img/w/${response.data.weather[0].icon}.png`,
