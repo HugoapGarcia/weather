@@ -1,3 +1,13 @@
+/*
+* Original author: HG
+* Latest contributor: HG
+* Client name: Palmetto Programming
+* Project name: WEATHER - API
+* Project number: 
+* Main purpose: Search and display current weather of specific city by interacting
+* with OpenWeather free version api.
+**/
+
 import React from 'react';
 import weatherIcon from '../../../assets/img/weather.png';
 import '../../../style.scss';
