@@ -27,7 +27,14 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `yarn deploy`
+
+Runs the app in the production mode.<br />
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+
 ### `yarn eject`
+
+
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
